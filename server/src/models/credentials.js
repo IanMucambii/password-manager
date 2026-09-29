@@ -25,6 +25,16 @@ const credentialSchema = new mongoose.Schema(
             required: true
         },
 
+        iv: {
+            type: String,
+            required: true
+        },
+
+        authTag: {
+            type: String,
+            required: true
+        },
+
         website: {
             type: String,
             trim: true

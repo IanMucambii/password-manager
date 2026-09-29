@@ -9,24 +9,15 @@ const authRoutes = require("./src/routes/authRoutes");
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
-// --------------------
-// Middleware
-// --------------------
+const credentialRoutes = require("./src/routes/credentialRoutes");
 
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+app.use("/api/credentials", credentialRoutes);
 
-// --------------------
-// Routes
-// --------------------
 
 app.use("/api/auth", authRoutes);
-
-// --------------------
-// Test Route
-// --------------------
 
 app.get("/", (req, res) => {
     res.json({
@@ -34,15 +25,8 @@ app.get("/", (req, res) => {
     });
 });
 
-// --------------------
-// Database Connection
-// --------------------
 
 connectDB();
-
-// --------------------
-// Start Server
-// --------------------
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
